@@ -10,10 +10,12 @@ Vagrant.configure("2") do |config|
     # Configuration de la VM
     zeek.vm.provider "virtualbox" do |vb|
       vb.name = "Zeek-VM"
-      vb.hostname = "vm1-zeek"
       vb.memory = "2048"  # 2GB de RAM
       vb.cpus = 2         # 2 CPUs
     end
+
+    # Définir le hostname de la machine virtuelle
+    zeek.vm.hostname = "vm1-zeek"
 
     # Interface NAT pour le réseau public (10.0.2.x)
     zeek.vm.network "public_network", ip: "10.0.2.15", auto_config: true
