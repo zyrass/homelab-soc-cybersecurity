@@ -1,0 +1,36 @@
+---
+title: Homelab 1 - Zeek et la surveillance réseau
+---
+
+flowchart TB
+  HOTE((Machine Hôte<br>Win 11<br>192.168.56.1))
+  VM_ZEEK[VM Zeek<br>Ubuntu Bento]
+
+  %% Interfaces Réseau VM Zeek
+  INTERFACE_RESEAU_NAT[Interface NAT<br>10.0.2.x<br>Réseau Public]
+  INTERFACE_RESEAU_HOST_ONLY[Interface Host-Only<br>192.168.56.x<br>Réseau Privé]
+
+  INTERNET((Internet))
+
+  %% Liens
+  HOTE --> VM_ZEEK
+
+  VM_ZEEK ---|Analyse du trafic| INTERFACE_RESEAU_NAT
+  VM_ZEEK ---|Analyse du trafic| INTERFACE_RESEAU_HOST_ONLY
+
+  INTERFACE_RESEAU_NAT -->|Accès au Web| INTERNET
+
+
+  %% Palette de couleurs flat et classes (https://flatuicolors.com/palette/es)
+  classDef machine fill:#f7f1e3,stroke:#aaa69d,stroke-width:1px,color:#2C3E50
+  classDef vm fill:#706fd3,stroke:#474787,stroke-width:1px,color:#FFFFFF
+  classDef networkNAT fill:#33d9b2,stroke:#218c74,stroke-width:1px,color:#2C3E50
+  classDef networkHOST_ONLY fill:#ff5252,stroke:#b33939,stroke-width:1px,color:#2C3E50
+  classDef web fill:#34ace0,stroke:#227093,stroke-width:1px,color:#FFFFFF
+
+  %% Affectation des classes
+  class HOTE machine
+  class VM_ZEEK vm
+  class INTERFACE_RESEAU_NAT networkNAT
+  class INTERFACE_RESEAU_HOST_ONLY networkHOST_ONLY
+  class INTERNET web
