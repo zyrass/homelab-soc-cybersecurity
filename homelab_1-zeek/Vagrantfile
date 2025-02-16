@@ -29,3 +29,5 @@ Vagrant.configure("2") do |config|
 
     # Provisioning : Exécuter le script d'installation de Zeek
     zeek.vm.provision "shell", path: "scripts/install_zeek.sh"
+  end
+end
